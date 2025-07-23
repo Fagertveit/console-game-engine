@@ -9,6 +9,7 @@ namespace ConsoleGameEngine
         public void Init()
         {
             screen.Init();
+            screen.SetColor(ConsoleColor.White, ConsoleColor.Black);
         }
         public void Run()
         {
@@ -58,6 +59,8 @@ namespace ConsoleGameEngine
             screen.ClearScreen();
 
             navigation.Render(screen.GetWidth(), screen.GetHeight());
+
+            screen.WriteAt("Welcome to the Console Game Engine", 15, 30);
         }
 
         public ConsoleKey AwaitCommand()

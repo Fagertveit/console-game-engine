@@ -14,6 +14,8 @@ namespace ConsoleGameEngine
             this.windowHeight = Console.WindowHeight;
             this.windowWidth = Console.WindowWidth;
 
+            Console.CursorVisible = false;
+
             Console.Write($"Console window width {this.windowWidth} and height {this.windowHeight}");
         }
         public void ClearScreen()
