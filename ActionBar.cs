@@ -20,7 +20,7 @@ namespace ConsoleGameEngine
 
             for (int i = 0; i < width; i++)
             {
-                topBorder += "-";
+                topBorder += RenderBrush.UpperBlock;
             }
 
             Console.SetCursorPosition(0, posTop);
@@ -28,10 +28,10 @@ namespace ConsoleGameEngine
 
             posTop += 1;
             Console.SetCursorPosition(0, posTop);
-            Console.Write("| ");
+            Console.Write(RenderBrush.LeftBlock);
             items.ForEach(item => item.Render());
 
-            int filler = width - CalculateTotalWidth() - 3;
+            int filler = width - CalculateTotalWidth() - 2;
 
             string fillerStr = "";
 
@@ -40,7 +40,7 @@ namespace ConsoleGameEngine
                 fillerStr += " ";
             }
 
-            fillerStr += "|";
+            fillerStr += RenderBrush.RightBlock;
             Console.Write(fillerStr);
 
             posTop += 1;
@@ -48,7 +48,7 @@ namespace ConsoleGameEngine
             string bottomBorder = "";
             for (int i = 0; i < width; i++)
             {
-                bottomBorder += "-";
+                bottomBorder += RenderBrush.LowerBlock;
             }
 
             Console.WriteLine(bottomBorder);
