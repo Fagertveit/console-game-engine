@@ -88,6 +88,13 @@ namespace ConsoleGameEngine
             }
         }
 
+        public string ActivateAction()
+        {
+            int index = items.FindIndex(item => item.active);
+
+            return items[index].Activate();
+        }
+
         private int CalculateTotalWidth()
         {
             int width = 0;

@@ -6,6 +6,8 @@ namespace ConsoleGameEngine
         bool running = true;
         private ActionBar navigation;
 
+        private string action;
+
         public void Init()
         {
             screen.Init();
@@ -13,11 +15,11 @@ namespace ConsoleGameEngine
         }
         public void Run()
         {
-            ActionItem item1 = new ActionItem("Use shovel", "shovel");
-            ActionItem item2 = new ActionItem("Use gun", "gun", true);
-            ActionItem item3 = new ActionItem("Walk forward", "gun");
-            ActionItem item4 = new ActionItem("Walk left", "gun");
-            ActionItem item5 = new ActionItem("Walk right", "gun");
+            ActionItem item1 = new ActionItem("Use shovel", "dig");
+            ActionItem item2 = new ActionItem("Use gun", "shoot", true);
+            ActionItem item3 = new ActionItem("Walk forward", "walk_forward");
+            ActionItem item4 = new ActionItem("Walk left", "walk_left");
+            ActionItem item5 = new ActionItem("Walk right", "walk_right");
             List<ActionItem> navigationItems = new List<ActionItem>(0);
 
             navigationItems.Add(item1);
@@ -30,28 +32,31 @@ namespace ConsoleGameEngine
 
             while (running)
             {
-                Update();
                 Render();
-                ConsoleKey command = AwaitCommand();
-
-                if (command == ConsoleKey.Escape)
-                {
-                    running = false;
-                }
-                else if (command == ConsoleKey.LeftArrow)
-                {
-                    navigation.NavigateLeft();
-                }
-                else if (command == ConsoleKey.RightArrow)
-                {
-                    navigation.NavigateRight();
-                }
+                Update();
             }
         }
 
         public void Update()
         {
+            ConsoleKey command = AwaitCommand();
 
+            if (command == ConsoleKey.Escape)
+            {
+                running = false;
+            }
+            else if (command == ConsoleKey.LeftArrow)
+            {
+                navigation.NavigateLeft();
+            }
+            else if (command == ConsoleKey.RightArrow)
+            {
+                navigation.NavigateRight();
+            }
+            else if (command == ConsoleKey.Enter)
+            {
+                action = navigation.ActivateAction();
+            }
         }
 
         public void Render()
@@ -60,7 +65,7 @@ namespace ConsoleGameEngine
 
             navigation.Render(screen.GetWidth(), screen.GetHeight());
 
-            screen.WriteAt("Welcome to the Console Game Engine", 15, 30);
+            screen.WriteAt($"Welcome to the Console Game Engine: Action {action}", 15, 30);
         }
 
         public ConsoleKey AwaitCommand()
