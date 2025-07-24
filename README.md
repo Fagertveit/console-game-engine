@@ -27,4 +27,18 @@ That it's easy to develop and convert earlier games into a more immersive experi
 ## Playground / Sandbox
 
 It's a cool way to explore C# and just play around with different things within the area of game design / developent. It would be cool to test out some
-generative world things in the longrun. Having these things in C# makes it easy to conver to engines like Unity.
+generative world things in the longrun. Having these things in C# makes it easy to convert to engines like Unity.
+
+## RPG Advanced mode
+
+I'm getting a bit excited about the whole project, I want to expand the functionality and make it a lightweight RPG system. This includes some of the listed things:
+
+* Character (Stats, Equipment, Info, Bio)
+* Inventory
+* Quest Journal
+* Worldmap
+* Localmap
+* Fight Scene
+* Barter
+
+An RPG system will be a bit more advanced, and I will need to work within a set resolution to make it possible, I need to see how it looks on a windows console, the mac console I can resize manually. Maybe there's a way to do this in code as well, I need to look into that.

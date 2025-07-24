@@ -3,55 +3,32 @@ namespace ConsoleGameEngine
     class ActionBar(List<ActionItem> items)
     {
         private List<ActionItem> items = items;
-        private ActionItem active = items.First();
 
         public void Render(int width, int height)
         {
-            // Navigationbar needs 3 rows that sits at the bottom of the window
-            // Active Item is rendered black on white whilst inactive items are
-            // rendered white on black
-            // Navigationbar is surrounded by a simple top and bottom border
-            Console.Write($"Rendering navigationbar in screen with width {width} and height {height}");
-
             int posTop = height - 4;
             Console.Write($"Starting at row {posTop}");
 
-            string topBorder = "";
-
-            for (int i = 0; i < width; i++)
-            {
-                topBorder += RenderBrush.UpperBlock;
-            }
-
             Console.SetCursorPosition(0, posTop);
-            Console.WriteLine(topBorder);
+            Console.Write(RenderBrush.Block);
+            Screen.FillWithRune(RenderBrush.UpperBlock, width - 2);
+            Console.Write(RenderBrush.Block);
 
             posTop += 1;
             Console.SetCursorPosition(0, posTop);
-            Console.Write(RenderBrush.LeftBlock);
+            Console.Write(RenderBrush.Block);
+
             items.ForEach(item => item.Render());
 
             int filler = width - CalculateTotalWidth() - 2;
-
-            string fillerStr = "";
-
-            for (int i = 0; i < filler; i++)
-            {
-                fillerStr += " ";
-            }
-
-            fillerStr += RenderBrush.RightBlock;
-            Console.Write(fillerStr);
+            Screen.FillWithString(" ", filler);
+            Console.Write(RenderBrush.Block);
 
             posTop += 1;
             Console.SetCursorPosition(0, posTop);
-            string bottomBorder = "";
-            for (int i = 0; i < width; i++)
-            {
-                bottomBorder += RenderBrush.LowerBlock;
-            }
-
-            Console.WriteLine(bottomBorder);
+            Console.Write(RenderBrush.Block);
+            Screen.FillWithRune(RenderBrush.LowerBlock, width - 2);
+            Console.Write(RenderBrush.Block);
         }
 
         public void NavigateRight()

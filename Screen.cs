@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace ConsoleGameEngine
 {
@@ -18,20 +19,56 @@ namespace ConsoleGameEngine
 
             Console.Write($"Console window width {this.windowWidth} and height {this.windowHeight}");
         }
-        public void ClearScreen()
+        public static void ClearScreen()
         {
             Console.Clear();
         }
 
-        public void SetColor(ConsoleColor color, ConsoleColor background = ConsoleColor.Black)
+        public static void SetColor(ConsoleColor color, ConsoleColor background = ConsoleColor.Black)
         {
             Console.ForegroundColor = color;
             Console.BackgroundColor = background;
         }
-        public void WriteAt(string text, int top, int left)
+        public static void WriteAt(string text, int top, int left)
         {
             Console.SetCursorPosition(left, top);
             Console.Write(text);
+        }
+
+        public static void FillWithChar(char c, int repeat)
+        {
+            string fill = "";
+
+            for (int i = 0; i < repeat; i++)
+            {
+                fill += c;
+            }
+
+            Console.Write(fill);
+        }
+
+        public static void FillWithRune(Rune c, int repeat)
+        {
+            string fill = "";
+
+            for (int i = 0; i < repeat; i++)
+            {
+                fill += c;
+            }
+
+            Console.Write(fill);
+        }
+
+        public static void FillWithString(string c, int repeat)
+        {
+            string fill = "";
+
+            for (int i = 0; i < repeat; i++)
+            {
+                fill += c;
+            }
+
+            Console.Write(fill);
         }
 
         public int GetWidth()
