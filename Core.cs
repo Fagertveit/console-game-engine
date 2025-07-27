@@ -8,6 +8,8 @@ namespace ConsoleGameEngine
 
         private string action;
 
+        private Scene testScene;
+
         public void Init()
         {
             screen.Init();
@@ -29,12 +31,15 @@ namespace ConsoleGameEngine
             navigationItems.Add(item5);
 
             navigation = new ActionBar(navigationItems);
+            testScene = SceneLoader.LoadScene("./testScene.json");
 
             while (running)
             {
                 Render();
                 Update();
             }
+
+            Console.Clear();
         }
 
         public void Update()
@@ -64,6 +69,12 @@ namespace ConsoleGameEngine
             Screen.ClearScreen();
 
             navigation.Render(screen.GetWidth(), screen.GetHeight());
+
+            Screen.WriteAt(testScene.ToString(), 10, 30);
+
+            var os = Environment.OSVersion;
+
+            Screen.WriteAt(os.Platform.ToString(), 5, 30);
 
             Screen.WriteAt($"Welcome to the Console Game Engine: Action {action}", 15, 30);
         }

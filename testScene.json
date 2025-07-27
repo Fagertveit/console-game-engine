@@ -1,0 +1,9 @@
+{
+    "id": "Test Scene",
+    "description": "You enter a cold long corridor.",
+    "actions": [
+        "Go forward",
+        "Go back",
+        "Investigate"
+    ]
+}

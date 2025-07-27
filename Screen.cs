@@ -1,8 +1,28 @@
 using System;
 using System.Text;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace ConsoleGameEngine
 {
+    static class ScreenResolutionWin
+    {
+        public static void Init()
+        {
+            Console.SetWindowSize(180, 60);
+        }
+    }
+
+    static class ScreenResolutionUnix
+    {
+        [DllImport("libc")]
+        static extern int system(string exec);
+        
+        public static void Init()
+        {
+            system(@"printf '\e[8;60;180t]'");
+        }
+    }
     class Screen(int width, int height, int windowWidth = 80, int windowHeight = 60)
     {
         private int width = width;
@@ -12,6 +32,17 @@ namespace ConsoleGameEngine
 
         public void Init()
         {
+            var os = Environment.OSVersion;
+
+            if (os.Platform == PlatformID.Unix)
+            {
+                ScreenResolutionUnix.Init();
+            }
+            else
+            {
+                ScreenResolutionWin.Init();
+            }
+
             this.windowHeight = Console.WindowHeight;
             this.windowWidth = Console.WindowWidth;
 
